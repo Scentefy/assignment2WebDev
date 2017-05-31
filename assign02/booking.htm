@@ -1,0 +1,53 @@
+<!� file booking.htm -->
+<HTML XMLns="http://www.w3.org/1999/xHTML"> 
+  <head> 
+    <title>A Simple Ajax Example</title> 
+	<script type="text/javascript" src="xhr.js"></script>
+    <script type="text/javascript" src="simpleajax.js"> </script>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-timepicker-addon.css">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="jquery-ui-timepicker-addon.js"></script>
+
+	<script type="text/javascript">
+	$('#datetimepicker').datetimepicker({
+	controlType: 'select',
+	timeFormat: 'hh:mm tt'
+	});
+	</script>
+
+  </head> 
+  <body>
+
+	<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/>
+	<script src="jquery.datetimepicker.full.js"></script>
+
+  <H1>Cab Booking System &nbsp;</H1>
+	<form name="myform">
+	    <label>Name:  <input type="text" name="namefield" required autofocus> </label>
+ 	    <label><br>Contact Phone: <input type="text" name="contactfield" required> <br><br> </label>
+		 <fieldset>
+		<legend>Pick up location:</legend>
+		<br>Unit Number(Not Required): <input type="text" name="unitnofield"> <br>
+		<br>Street Number: <input type="text" name="streetnofield" required> <br>
+		<br>Street Name: <input type="text" name="streetnamefield" required> <br>
+		<br>Suburb: <input type="text" name="suburbfield" required> <br>
+		 </fieldset>
+		<label><br>Destination Suburb: <input type="text" name="dstfield" required> <br><br> </label>
+		<label><br>Pick Up Time: <input type="date" name="pickuptimefield" required> <br><br> </label>
+	    <input name="submit" type = "button" onClick = "getData('data.php','targetDiv', namefield.value,
+		 																				contactfield.value,
+																						unitnofield.value,
+																						streetnofield.value,
+																						streetnamefield.value,
+																						suburbfield.value,
+		  																				dstfield.value,																		pickuptimefield.value) " value = "Fetch from server">
+	</form>
+
+	<input type="text" name="datetimepicker" id="datetimepicker"/>
+	
+	
+	<div id="targetDiv"> 
+	    <p>The fetched data will go here.</p>
+	</div> 
+ </body> 
+</HTML>
