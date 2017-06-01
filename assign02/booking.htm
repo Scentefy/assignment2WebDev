@@ -3,12 +3,21 @@
   <head> 
     <title>A Simple Ajax Example</title> 
 	<script type="text/javascript" src="xhr.js"></script>
-    <script type="text/javascript" src="simpleajax.js"> </script>
+    <script type="text/javascript" src="booking.js"> </script>
+
+	<style>
+		div.fixed {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		width: 45px;
+		border: 6px solid #000;
+		}
+	</style>
 
   </head> 
   <body>
 
-	<link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/>
 	<script src="jquery.datetimepicker.full.js"></script>
 
   <H1>Cab Booking System &nbsp;</H1>
@@ -31,10 +40,14 @@
 																						streetnamefield.value,
 																						suburbfield.value,
 		  																				dstfield.value,	
-																						pickuptimefield.value) " value = "Fetch from server">
+																						pickuptimefield.value) " value = "Book A Cab">
 	</form>	
 	<div id="targetDiv"> 
-	    <p>The fetched data will go here.</p>
+	    <p>Booking Confirmations Below.</p>
 	</div> 
+
+	<div class="fixed">
+	<br/><a href="admin.htm">Admin</a>
+	</div>
  </body> 
 </HTML>

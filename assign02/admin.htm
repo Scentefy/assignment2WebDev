@@ -1,0 +1,37 @@
+<!� file booking.htm -->
+<HTML XMLns="http://www.w3.org/1999/xHTML"> 
+  <head> 
+    <title>A Simple Ajax Example</title> 
+	<script type="text/javascript" src="xhr.js"></script>
+    <script type="text/javascript" src="admin.js"> </script>
+
+  </head> 
+  <body>
+
+  <H1>Cab Booking System &nbsp;</H1>
+	<form name="myform">
+	    <label>Name:  <input type="text" name="namefield" required autofocus> </label>
+ 	    <label><br>Contact Phone: <input type="number" name="contactfield" required> <br><br> </label>
+		 <fieldset>
+		<legend>Pick up location:</legend>
+		<br>Unit Number(Not Required): <input type="number" name="unitnofield"> <br>
+		<br>Street Number: <input type="number" name="streetnofield" required> <br>
+		<br>Street Name: <input type="text" name="streetnamefield" required> <br>
+		<br>Suburb: <input type="text" name="suburbfield" required> <br>
+		 </fieldset>
+		<label><br>Destination Suburb: <input type="text" name="dstfield" required> <br><br> </label>
+		<label><br>Pick Up Time: <input type="datetime-local" name="pickuptimefield" id="pickuptimefield" min="" max="2020-01-01" required> <br><br> </label>
+	    <input name="submit" type = "button" onClick = "getData('data.php','targetDiv', namefield.value,
+		 																				contactfield.value,
+																						unitnofield.value,
+																						streetnofield.value,
+																						streetnamefield.value,
+																						suburbfield.value,
+		  																				dstfield.value,	
+																						pickuptimefield.value) " value = "Fetch from server">
+	</form>	
+	<div id="targetDiv"> 
+	    <p>The fetched data will go here.</p>
+	</div> 
+ </body> 
+</HTML>
