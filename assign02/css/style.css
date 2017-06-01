@@ -1,0 +1,59 @@
+/* General Styles */
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+img, textarea{
+	max-width: 100%;
+}
+ul, ol{
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.clearfix::after{
+	content: "";
+	display: table;
+	clear: both;
+}
+/* EVERYTHING ELSE */
+h1{
+	text-align: center;
+}
+.form{
+	text-align: center;
+}
+.title{
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+.name, .contact{
+	display: block;
+}
+.contact{
+	padding-right:50px;
+	padding-top: 10px;
+}
+
+#targetDiv{
+	text-align: center;
+	padding-top: 10px;
+}
+.fixed{
+	text-align: center;
+}
+.admin{
+	 background-color: rgba(143,153,171,0.3); 
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

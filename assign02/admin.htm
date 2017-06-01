@@ -8,30 +8,16 @@
   </head> 
   <body>
 
-  <H1>Cab Booking System &nbsp;</H1>
-	<form name="myform">
-	    <label>Name:  <input type="text" name="namefield" required autofocus> </label>
- 	    <label><br>Contact Phone: <input type="number" name="contactfield" required> <br><br> </label>
-		 <fieldset>
-		<legend>Pick up location:</legend>
-		<br>Unit Number(Not Required): <input type="number" name="unitnofield"> <br>
-		<br>Street Number: <input type="number" name="streetnofield" required> <br>
-		<br>Street Name: <input type="text" name="streetnamefield" required> <br>
-		<br>Suburb: <input type="text" name="suburbfield" required> <br>
-		 </fieldset>
-		<label><br>Destination Suburb: <input type="text" name="dstfield" required> <br><br> </label>
-		<label><br>Pick Up Time: <input type="datetime-local" name="pickuptimefield" id="pickuptimefield" min="" max="2020-01-01" required> <br><br> </label>
-	    <input name="submit" type = "button" onClick = "getData('data.php','targetDiv', namefield.value,
-		 																				contactfield.value,
-																						unitnofield.value,
-																						streetnofield.value,
-																						streetnamefield.value,
-																						suburbfield.value,
-		  																				dstfield.value,	
-																						pickuptimefield.value) " value = "Fetch from server">
+  <H1>Admin Cab Booking System &nbsp;</H1>
+	<form name="adminform" action="adminRequests.php">
+        <p>	<input type="submit" value="Show Cab Requests" /></p>
 	</form>	
-	<div id="targetDiv"> 
-	    <p>The fetched data will go here.</p>
-	</div> 
+
+    <form name="adminform" action="adminAssign.php">
+        <br>Assign Cab to reference Number: <input type="number" name="refNum" required> <br>
+        <p>	<input type="submit" value="Assign a Cab" /></p>
+	</form>	
+
+    <a href="booking.htm">Return to Home Page</a><br/>
  </body> 
 </HTML>

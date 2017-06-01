@@ -42,7 +42,10 @@
         	pickUpTime VARCHAR(50) NOT NULL,
 			status VARCHAR(20) NOT NULL
 			)";
-			echo "Table Created";
+			$result = mysqli_query($conn, $sql);-
+				if($result) {
+				echo "Table Created";
+				}
 			}
 			
 			
@@ -86,7 +89,6 @@
 						$databaseTime = $row['pickUpTime'];
 					}
 
-					echo "</table>";
 					echo "<br> Thank you! Your booking reference number is " . $refNumber;
 					echo "<br> You will be picked up in front of your provided address at " . strftime('%H:%M', strtotime($databaseTime)) . " on " . strftime('%d/%m/%y', strtotime($databaseTime));
 
