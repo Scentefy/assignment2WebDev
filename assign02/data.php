@@ -2,7 +2,7 @@
 <?php
 
 	// sql info or use include 'file.inc'
-       require_once('../../../conf/settings.php');
+       require_once('../../../../conf/settings.php');
 
 	// get name and password passed from client
 		$name = $_GET['name'];
@@ -13,17 +13,8 @@
 		$suburb = $_GET['suburb'];
 		$destination = $_GET['destination'];
 		$pickuptime = $_GET['pickuptime'];
-
-		echo $name . "</br>";
-		echo $contact . "</br>";
-		echo $unitno . "</br>";
-		echo $streetno . "</br>";
-		echo $streetname . "</br>";
-		echo $suburb . "</br>";
-		echo $destination . "</br>";
-		echo $pickuptime . "</br>";
 	
-/*	// The @ operator suppresses the display of any error messages
+	// The @ operator suppresses the display of any error messages
 	// mysqli_connect returns false if connection failed, otherwise a connection value
 	$conn = @mysqli_connect($sql_host,
 		$sql_user,
@@ -37,56 +28,73 @@
 		}
 		else
 		{
+			if(mysqli_query($conn, 'select 1 from cab LIMIT 1') == false)
+			{
 			$sql = "CREATE TABLE cab (
-			bookingNumber VARCHAR(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+			bookingNumber INT AUTO_INCREMENT PRIMARY KEY, 
 			customerName VARCHAR(100) NOT NULL,
 			contactPhone INT(28) NOT NULL,
-			unitNo VARCHAR(100) NOT NULL,
-			streetNo VARCHAR(100) NOT NULL,
+			unitNo INT NOT NULL,
+			streetNo INT NOT NULL,
 			streetName VARCHAR(100) NOT NULL,
 			suburb VARCHAR(100) NOT NULL,
-			destination VARCHAR(20) NOT NULL,
-        	pickUpTime VARCHAR(20) NOT NULL,
-			bookingDate VARCHAR(20) NOT NULL,
-			status VARCHAR(20)
+			destination VARCHAR(100) NOT NULL,
+        	pickUpTime VARCHAR(50) NOT NULL,
+			status VARCHAR(20) NOT NULL
 			)";
-
-			$query = "select * from ajax where name = '$name' and password = '$pwd'";
-			$queryUser = "select * from ajax where name = '$name'";
-			$result = mysqli_query($conn, $query);
-			$resultUser = mysqli_query($conn, $queryUser);
-			$num_rows = $result->num_rows;
-			$num_rowsUser = $resultUser->num_rows;
-
-			// sleep for 10 seconds to slow server response down
-			sleep(10);
-			// write back the password concatenated to end of the name
-
-			if($result == NULL) {
-				echo "Username or Password Incorrect";
-				echo "<br/>";
-				echo "<td><a href='data.php'>Return to Homepage</a></td>";
+			echo "Table Created";
 			}
-			if($num_rows>0) 
-			{
-				// Display the retrieved records
-				echo "<table border=\"1\">";
-				echo "<tr>\n"
-					 ."<th scope=\"col\">Email</th>\n"
-					 ."</tr>\n";
+			
+			
+				// Set up the SQL command to add the data into the table
+				$query = "insert into cab"
+								."(customerName, contactPhone, unitNo, streetNo, streetName, suburb, destination, pickUpTime, status)"
+							. "values"
+								."('$name','$contact','$unitno', '$streetno', '$streetname', '$suburb', '$destination', '$pickuptime', 'unassigned')";
 
-				while ($row = mysqli_fetch_assoc($result)){
-					echo "<tr>";
-					echo "<td>",$row["email"],"</td>";
-				}
-				echo "</table>";
+			  /*echo $name . "</br>";
+				echo $contact . "</br>";
+				echo $unitno . "</br>";
+				echo $streetno . "</br>";
+				echo $streetname . "</br>";
+				echo $suburb . "</br>";
+				echo $destination . "</br>";
+				echo $pickuptime . "</br>";*/
+
+				// sleep for 10 seconds to slow server response down
+				sleep(10);
+						// executes the query
+				$result = mysqli_query($conn, $query);
+				// checks if the execution was successful
+				if(!$result) {
+					echo "<p>Something is wrong with ",	$query, "</p>";
+				} else {
+					// display an operation successful message
+					echo "<p>Success</p>";
+
+				$query = "select * from cab where customerName = '$name'";
+
+				$result = mysqli_query($conn, $query);
+				
+				// checks if the execuion was successful
+				if(!$result) {
+					echo "<p>Something is wrong with ",	$query, "</p>";
+				} else {
+
+					while ($row = mysqli_fetch_assoc($result)){
+						$refNumber = $row['bookingNumber'];
+						$databaseTime = $row['pickUpTime'];
+					}
+
+					echo "</table>";
+					echo "<br> Thank you! Your booking reference number is " . $refNumber;
+					echo "<br> You will be picked up in front of your provided address at " . strftime('%H:%M', strtotime($databaseTime)) . " on " . strftime('%d/%m/%y', strtotime($databaseTime));
+
+					// Frees up the memory, after using the result pointer
+					mysqli_free_result($result);
+				} // if successful query operation
+				// close the database connection
+				mysqli_close($conn);
 			}
-			else if($num_rowsUser>0)
-			{
-				echo "Password is Wrong";
-			}
-			else
-			{
-				echo "Username not found";
-			}*/
+	}  // if successful database connection
 ?>
